@@ -1,0 +1,86 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+
+{% block main-content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow-lg border-0" style="border-radius: 16px; overflow: hidden;">
+
+                <div class="text-center py-4" style="background: #1a1a1a;">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-warning mb-2"
+                         style="width: 56px; height: 56px;">
+                        <i class="fa fa-coffee fa-lg text-dark"></i>
+                    </div>
+                    <h3 class="text-white fw-semibold mb-1">Welcome back</h3>
+                    <p class="text-white-50 mb-0" style="font-size: 0.9rem;">Sign in to continue to JK Cafe</p>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+
+                    <form action="" method="post" novalidate>
+                        {% csrf_token %}
+
+                        {% for fm in form %}
+                        <div class="mb-3">
+                            <label for="{{ fm.id_for_label }}" class="form-label fw-medium small text-secondary">
+                                {{ fm.label }}
+                            </label>
+
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    {% if 'password' in fm.name %}
+                                        <i class="fa fa-lock text-muted"></i>
+                                    {% else %}
+                                        <i class="fa fa-user text-muted"></i>
+                                    {% endif %}
+                                </span>
+                                {{ fm }}
+                            </div>
+
+                            {% if fm.errors %}
+                            <small class="text-danger d-block mt-1">{{ fm.errors|striptags }}</small>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+
+                        <div class="text-end mb-4">
+                            <a href="{% url 'password_reset' %}" class="small text-decoration-none" style="color:#d35400;">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning w-100 fw-semibold py-2" style="border-radius: 8px;">
+                            Login
+                        </button>
+
+                        {% if form.non_field_errors %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger mt-3 mb-0 py-2 small">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="d-flex align-items-center my-4">
+                            <hr class="flex-grow-1">
+                            <span class="px-2 text-muted small">or</span>
+                            <hr class="flex-grow-1">
+                        </div>
+
+                        <p class="text-center mb-0 small text-secondary">
+                            New here?
+                            <a href="{% url 'customerregistration' %}" class="fw-semibold text-decoration-none" style="color:#d35400;">
+                                Create an account
+                            </a>
+                        </p>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

@@ -1,0 +1,64 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Wish List{% endblock title %}
+
+{% block main-content %}
+
+<div class="container my-5">
+
+    {% if product %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+
+                {% for prod in product %}
+
+                <div class="col-md-4 text-center mb-4">
+
+                    <a href="{% url 'product-detail' prod.product.id %}" class="text-decoration-none text-dark">
+
+                        <img src="{{ prod.product.product_image.url }}"
+                             class="img-fluid rounded shadow"
+                             style="height:220px; width:100%; object-fit:cover;">
+
+                        <h5 class="mt-3">{{ prod.product.title }}</h5>
+
+                        <h6 class="text-danger">
+                            ₹{{ prod.product.discounted_price }}
+                            <small class="text-decoration-line-through text-muted">
+                                ₹{{ prod.product.selling_price }}
+                            </small>
+                        </h6>
+
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+
+    <div class="text-center my-5">
+
+        <h2 class="text-muted"> Your Wishlist is Empty</h2>
+
+        <p class="mt-3">
+            Looks like you haven't added any delicious dishes yet.
+        </p>
+
+        <a href="{% url 'home' %}" class="btn btn-danger mt-3">
+            Return Home
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock main-content %}

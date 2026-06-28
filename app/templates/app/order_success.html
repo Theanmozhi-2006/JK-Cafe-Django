@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Order Successful{% endblock %}
+
+{% block main-content %}
+
+<div class="container my-5">
+
+    <div class="card shadow-lg border-0 text-center p-5">
+
+        <div style="font-size: 80px;">🎉</div>
+
+        <h1 class="text-success mt-3">
+            Order Placed Successfully!
+        </h1>
+
+        <p class="lead mt-3">
+            Thank you for ordering from <strong>JK Cafe</strong>.
+        </p>
+
+        <p>
+            Your order has been received and is being prepared with care.
+        </p>
+
+        <h4 class="mt-4">
+            Estimated Preparation Time
+        </h4>
+
+        <h3 class="text-warning">
+            25–35 Minutes
+        </h3>
+
+        <hr>
+
+        <p class="text-muted">
+            We hope you enjoyed exploring JK Cafe.
+            Thank you for visiting and have a wonderful day!
+        </p>
+
+        <div class="mt-4">
+
+            <a href="{% url 'home' %}" class="btn btn-success me-2">
+                Continue Shopping
+            </a>
+
+            <a href="{% url 'showwishlist' %}" class="btn btn-outline-danger">
+                View Wishlist
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
